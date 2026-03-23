@@ -13,7 +13,7 @@ export default function Home() {
   // Literary & Scholarly Font Definitions
   const fonts = {
     teHeader: { fontFamily: "'Tiro Telugu', serif" }, 
-    teBody: { fontFamily: "'Noto Serif Telugu', serif" },
+    teBody: { fontFamily: "'Tiro Telugu', serif" },
     enHeader: { fontFamily: "'Varela Round', sans-serif" },
     enBody: { fontFamily: "'Montserrat', sans-serif" }
   };
