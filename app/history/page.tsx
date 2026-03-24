@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Image from 'next/image'; // <--- ENSURE THIS LINE IS PRESENT
 
 export default function History() {
   const [activeChapter, setActiveChapter] = useState('');
