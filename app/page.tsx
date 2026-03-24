@@ -412,16 +412,44 @@ export default function Home() {
           </div>
 
           {/* Social Connect Column */}
-          <div className="footer-col">
-            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.connectTitle}</h4>
-            <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
-               {/* Placeholders for social icons as seen in the image */}
-               {['FB', 'IG', 'X', 'YT', 'IN'].map(icon => (
-                 <div key={icon} style={{ width: '35px', height: '35px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', cursor: 'pointer' }}>{icon}</div>
-               ))}
-            </div>
-          </div>
-        </div>
+        
+<div className="footer-col">
+  <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.connectTitle}</h4>
+  <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
+    {[
+      { label: 'FB', url: 'https://www.facebook.com/bvvb_trust' },
+      { label: 'IG', url: 'https://www.instagram.com/bvvb_trust' },
+      { label: 'X',  url: 'https://x.com/bvvbtrust' },
+      { label: 'YT', url: 'https://www.youtube.com/@BVVBTRUST' },
+      { label: 'IN', url: '#' } // Placeholder for LinkedIn
+    ].map((social) => (
+      <a 
+        key={social.label} 
+        href={social.url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{ 
+          width: '35px', 
+          height: '35px', 
+          borderRadius: '50%', 
+          background: 'rgba(255,255,255,0.1)', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          fontSize: '0.8rem', 
+          cursor: 'pointer',
+          textDecoration: 'none',
+          color: '#f5f5f5',
+          transition: 'background 0.3s'
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')}
+        onMouseOut={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+      >
+        {social.label}
+      </a>
+    ))}
+  </div>
+</div>
 
         {/* Bottom Legal Bar */}
         <div className="footer-bottom" style={{ maxWidth: '1200px', margin: '40px auto 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '0.85rem' }}>
