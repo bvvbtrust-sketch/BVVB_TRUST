@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '/LOGO_HQ.png';zz
-import mainTemple1 from '/main_temple_1.jpeg';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -202,7 +200,14 @@ export default function Home() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-content">
           <div className="logo">
-            <Image src={logo} alt="Logo" width={60} height={60} className="logo-image" style={{borderRadius: '100%', objectFit: 'cover' ,mixBlendMode: 'multiply'}} />
+            <Image 
+              src="/LOGO_HQ.png" 
+              alt="Logo" 
+              width={60} 
+              height={60} 
+              className="logo-image" 
+              style={{borderRadius: '100%', objectFit: 'cover' ,mixBlendMode: 'multiply'}} 
+            />
             <div className="logo-text">
               <span className="logo-main" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '1.4rem' : '1.3rem' }}>{t[lang].trustName}</span>
               <span className="logo-sub" style={{ fontSize: lang === 'te' ? '1.1rem' : '0.85rem', lineHeight: '1.2' }}>{t[lang].motto}</span>
@@ -283,7 +288,12 @@ export default function Home() {
             </div>
             <div className="about-image">
                <div className="temple-slider" style={{ position: 'relative', height: '500px', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                  <Image src={mainTemple1} alt="Sri Omkareswara Swamy" fill style={{ objectFit: 'cover' }} />
+                  <Image 
+                    src="/main_temple_1.jpeg" 
+                    alt="Sri Omkareswara Swamy" 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                  />
                   <p className="image-caption" style={{ position: 'absolute', bottom: '0', width: '100%', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '10px', textAlign: 'center' }}>
                     {lang === 'en' ? 'Sri Omkareswara Swamy Temple, Paarnapalli' : 'శ్రీ ఓంకారేశ్వర స్వామి ఆలయం, పార్నపల్లి'}
                   </p>
