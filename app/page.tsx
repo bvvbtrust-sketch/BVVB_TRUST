@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import logo from '../images/logo_background_removed.png';
+import mainTemple1 from '../images/main_temple_1.jpeg';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,7 +13,7 @@ export default function Home() {
   // Literary & Scholarly Font Definitions
   const fonts = {
     teHeader: { fontFamily: "'Tiro Telugu', serif" }, 
-    teBody: { fontFamily: "'Noto Serif Telugu', serif" },
+    teBody: { fontFamily: "'Tiro Telugu', serif" },
     enHeader: { fontFamily: "'Varela Round', sans-serif" },
     enBody: { fontFamily: "'Montserrat', sans-serif" }
   };
@@ -22,7 +23,7 @@ export default function Home() {
 
   const t = {
     en: {
-      trustName: "Brahmasri Valiveru VenkataRama Bhotlu Trust",
+      trustName: "Brahmashri Valiveru VenkataRama Bhotlu Trust",
       motto: "Shiva Anugraha • Guru Krupa • Atmonnati",
       nav: { home: 'Home', about: 'About', programs: 'Programs', events: 'Events', contact: 'Contact', donate: 'Donate' },
       hero: {
@@ -30,17 +31,17 @@ export default function Home() {
         shloka1_caption: "— विवेकचूडामणि",
         meaning1: "Three things are rare and due to the grace of God: human birth, longing for liberation, and the refuge of a great soul.",
         welcome: "Welcome to",
-        desc1: "Centered around the divine Jeeva Samadhi (Brindavan) of the revered saint Brahmasri Valiveru Venkatarama Bhotlu, this sacred site in Parnapalle is graced by the Sri Omkareswara Swamy Banalinga, established directly upon the saint's eternal presence to bless all devotees and seekers.",
+        desc1: "Centered around the divine Jeeva Samadhi (Brindavan) of the revered saint Brahmashri Valiveru Venkatarama Bhotlu, this sacred site in Parnapalle is graced by the Sri Omkareswara Swamy Banalinga, established directly upon the saint's eternal presence to bless all devotees and seekers.",
         btnHistory: "Explore Our Sacred History",
         btnLearn: "Learn More"
       },
       about: {
         tag: "Our Foundation",
         title: "A Sacred Legacy of Two Centuries",
-        desc: "The Brahmasri Valiveru VenkataRama Bhotulu Trust is dedicated to the care and preservation of the sacred Jeeva Samadhi (Brindavan) at Parnapalle, nurturing its spiritual heritage and fostering the values of Sanatana Dharma. Established and administered by the 6th generation descendants of the revered saint, the Trust serves devotees and seekers with a commitment to continuity, devotion, and service.",
+        desc: "The Brahmashri Valiveru VenkataRama Bhotulu Trust is dedicated to the care and preservation of the sacred Jeeva Samadhi (Brindavan) at Parnapalle, nurturing its spiritual heritage and fostering the values of Sanatana Dharma. Established and administered by the 6th generation descendants of the revered saint, the Trust serves devotees and seekers with a commitment to continuity, devotion, and service.",
         historyLink: "📜 Read the full history of the Saint and the Temple →",
         heritageTitle: "Sacred Heritage",
-        heritageDesc: "More than 200 years ago, Brahmasri Valiveru VenkataRama Bhotlu, a realized spiritual luminary, attained Jeeva Samadhi at this holy site. In reverence to the great saint, Sri Omkareswara Swamy Temple was established above the sacred Brindavan — a powerful centre of Shiva worship, meditation, and living spiritual heritage.",
+        heritageDesc: "More than 200 years ago, Brahmashri Valiveru VenkataRama Bhotlu, a realized spiritual luminary, attained Jeeva Samadhi at this holy site. In reverence to the great saint, Sri Omkareswara Swamy Temple was established above the sacred Brindavan — a powerful centre of Shiva worship, meditation, and living spiritual heritage.",
         visionTitle: "Vision",
         visionDesc: "To develop Sri Omkareswara Swamy Temple into a vibrant spiritual, cultural, and charitable centre serving devotees and seekers at large.",
         missionTitle: "Mission",
@@ -92,7 +93,7 @@ export default function Home() {
         regNo: "Reg. No.: 13/2026",
         quickLinksTitle: "Quick Links",
         connectTitle: "Connect With Us",
-        copyright: "© 2026 Brahmasri Valiveru VenkataRama Bhotlu Trust. All rights reserved.",
+        copyright: "© 2026 Brahmashri Valiveru VenkataRama Bhotulu Trust. All rights reserved.",
         privacy: "Privacy Policy",
         terms: "Terms of Service"
       }
@@ -201,14 +202,7 @@ export default function Home() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-content">
           <div className="logo">
-            <Image 
-              src="/LOGO_HQ.png" 
-              alt="Logo" 
-              width={120} 
-              height={120} 
-              className="logo-image" 
-              style={{borderRadius: '100%', objectFit: 'contain' ,mixBlendMode: 'multiply'}} 
-            />
+            <Image src={logo} alt="Logo" width={60} height={60} className="logo-image" style={{borderRadius: '100%', objectFit: 'cover' ,mixBlendMode: 'multiply'}} />
             <div className="logo-text">
               <span className="logo-main" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '1.4rem' : '1.3rem' }}>{t[lang].trustName}</span>
               <span className="logo-sub" style={{ fontSize: lang === 'te' ? '1.1rem' : '0.85rem', lineHeight: '1.2' }}>{t[lang].motto}</span>
@@ -238,7 +232,7 @@ export default function Home() {
               <cite style={{ fontWeight: 'normal', fontStyle: 'normal', fontSize: '1.1rem', opacity: 0.9 }}>
                 {t[lang].hero.meaning1}
                 <br />
-              </cite>
+                </cite>
             </blockquote>
 
             <h2 className="hero-welcome" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '1.8rem' : '1.5rem', marginTop: '30px' }}>{t[lang].hero.welcome}</h2>
@@ -289,7 +283,7 @@ export default function Home() {
             </div>
             <div className="about-image">
                <div className="temple-slider" style={{ position: 'relative', height: '500px', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                  <Image src="/main_temple_1.jpeg" alt="Sri Omkareswara Swamy" fill style={{ objectFit: 'cover' }} />
+                  <Image src={mainTemple1} alt="Sri Omkareswara Swamy" fill style={{ objectFit: 'cover' }} />
                   <p className="image-caption" style={{ position: 'absolute', bottom: '0', width: '100%', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '10px', textAlign: 'center' }}>
                     {lang === 'en' ? 'Sri Omkareswara Swamy Temple, Paarnapalli' : 'శ్రీ ఓంకారేశ్వర స్వామి ఆలయం, పార్నపల్లి'}
                   </p>
