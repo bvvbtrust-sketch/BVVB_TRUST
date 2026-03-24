@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '../images/logo_background_removed.png';
-import mainTemple1 from '../images/main_temple_1.jpeg';
+import logo from '/images/LOGO_HQ.png';
+import mainTemple1 from '/images/main_temple_1.jpeg';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
