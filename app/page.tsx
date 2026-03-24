@@ -7,6 +7,12 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [lang, setLang] = useState<'en' | 'te'>('en');
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent Hydration Mismatch Errors
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Literary & Scholarly Font Definitions
   const fonts = {
@@ -21,7 +27,7 @@ export default function Home() {
 
   const t = {
     en: {
-      trustName: "Brahmashri Valiveru VenkataRama Bhotlu Trust",
+      trustName: "Brahmasri Valiveru VenkataRama Bhotlu Trust",
       motto: "Shiva Anugraha • Guru Krupa • Atmonnati",
       nav: { home: 'Home', about: 'About', programs: 'Programs', events: 'Events', contact: 'Contact', donate: 'Donate' },
       hero: {
@@ -29,17 +35,17 @@ export default function Home() {
         shloka1_caption: "— विवेकचूडामणि",
         meaning1: "Three things are rare and due to the grace of God: human birth, longing for liberation, and the refuge of a great soul.",
         welcome: "Welcome to",
-        desc1: "Centered around the divine Jeeva Samadhi (Brindavan) of the revered saint Brahmashri Valiveru Venkatarama Bhotlu, this sacred site in Parnapalle is graced by the Sri Omkareswara Swamy Banalinga, established directly upon the saint's eternal presence to bless all devotees and seekers.",
+        desc1: "Centered around the divine Jeeva Samadhi (Brindavan) of the revered saint Brahmasri Valiveru Venkatarama Bhotlu, this sacred site in Parnapalle is graced by the Sri Omkareswara Swamy Banalinga, established directly upon the saint's eternal presence to bless all devotees and seekers.",
         btnHistory: "Explore Our Sacred History",
         btnLearn: "Learn More"
       },
       about: {
         tag: "Our Foundation",
         title: "A Sacred Legacy of Two Centuries",
-        desc: "The Brahmashri Valiveru VenkataRama Bhotulu Trust is dedicated to the care and preservation of the sacred Jeeva Samadhi (Brindavan) at Parnapalle, nurturing its spiritual heritage and fostering the values of Sanatana Dharma. Established and administered by the 6th generation descendants of the revered saint, the Trust serves devotees and seekers with a commitment to continuity, devotion, and service.",
+        desc: "The Brahmasri Valiveru VenkataRama Bhotulu Trust is dedicated to the care and preservation of the sacred Jeeva Samadhi (Brindavan) at Parnapalle, nurturing its spiritual heritage and fostering the values of Sanatana Dharma. Established and administered by the 6th generation descendants of the revered saint, the Trust serves devotees and seekers with a commitment to continuity, devotion, and service.",
         historyLink: "📜 Read the full history of the Saint and the Temple →",
         heritageTitle: "Sacred Heritage",
-        heritageDesc: "More than 200 years ago, Brahmashri Valiveru VenkataRama Bhotlu, a realized spiritual luminary, attained Jeeva Samadhi at this holy site. In reverence to the great saint, Sri Omkareswara Swamy Temple was established above the sacred Brindavan — a powerful centre of Shiva worship, meditation, and living spiritual heritage.",
+        heritageDesc: "More than 200 years ago, Brahmasri Valiveru VenkataRama Bhotlu, a realized spiritual luminary, attained Jeeva Samadhi at this holy site. In reverence to the great saint, Sri Omkareswara Swamy Temple was established above the sacred Brindavan — a powerful centre of Shiva worship, meditation, and living spiritual heritage.",
         visionTitle: "Vision",
         visionDesc: "To develop Sri Omkareswara Swamy Temple into a vibrant spiritual, cultural, and charitable centre serving devotees and seekers at large.",
         missionTitle: "Mission",
@@ -94,7 +100,7 @@ export default function Home() {
         regNo: "Reg. No.: 13/2026",
         quickLinksTitle: "Quick Links",
         connectTitle: "Connect With Us",
-        copyright: "© 2026 Brahmashri Valiveru VenkataRama Bhotulu Trust. All rights reserved.",
+        copyright: "© 2026 Brahmasri Valiveru VenkataRama Bhotlu Trust. All rights reserved.",
         privacy: "Privacy Policy",
         terms: "Terms of Service"
       }
@@ -104,7 +110,7 @@ export default function Home() {
       motto: "శివానుగ్రహం • గురు కృప • ఆత్మోన్నతి",
       nav: { home: 'హోమ్', about: 'మా గురించి', programs: 'కార్యక్రమాలు', events: 'వేడుకలు', contact: 'సంప్రదించండి', donate: 'విరాళాలు' },
       hero: {
-        shloka1: "“దుర్లభం త్రయమేవైతద్దేవానుగ్రహహేతుకమ్ । మనుష్యత్వం ముముక్షుత్వం మహాపురుషసంశ్రయః ॥”",
+        shloka1: "“దుర్లభం త్రయమేవైతద్దేవానుग्रहహేతుకమ్ । మనుష్యత్వం ముముక్షుత్వం మహాపురుషసంశ్రయః ॥”",
         shloka1_caption: "— వివేకచూడామణి",
         meaning1: "మానవ జన్మ, మోక్షంపై కోరిక, మహాపురుషుల ఆశ్రయం - ఈ మూడూ దైవానుగ్రహం వల్లనే లభిస్తాయి.",
         welcome: "స్వాగతం",
@@ -178,7 +184,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'programs', 'events', 'contact', 'donate'];
+      const sections = ['home', 'about', 'programs', 'events', 'video', 'contact', 'donate'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -200,20 +206,15 @@ export default function Home() {
     }
   };
 
+  // Do not render until client-side hydration is complete to prevent the Application Error
+  if (!mounted) return null;
+
   return (
     <main className="main-container" style={currentBodyFont}>
-      {/* Navigation */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-content">
           <div className="logo">
-            <Image 
-              src="/LOGO_HQ.png" 
-              alt="Logo" 
-              width={60} 
-              height={60} 
-              className="logo-image" 
-              style={{borderRadius: '100%', objectFit: 'cover' ,mixBlendMode: 'multiply'}} 
-            />
+            <Image src="/LOGO_HQ.png" alt="Logo" width={60} height={60} className="logo-image" style={{borderRadius: '100%', objectFit: 'cover' ,mixBlendMode: 'multiply'}} unoptimized />
             <div className="logo-text">
               <span className="logo-main" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '1.4rem' : '1.3rem' }}>{t[lang].trustName}</span>
               <span className="logo-sub" style={{ fontSize: lang === 'te' ? '1.1rem' : '0.85rem', lineHeight: '1.2' }}>{t[lang].motto}</span>
@@ -232,7 +233,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section id="home" className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -240,12 +240,8 @@ export default function Home() {
             <blockquote className="hero-shloka">
               <p style={{ fontSize: lang === 'te' ? '1.5rem' : '1.3rem', marginBottom: '10px' }}>{t[lang].hero.shloka1}</p>
               <p style={{ fontSize: lang === 'te' ? '1.5rem' : '1.3rem', marginBottom: '10px' }}>{t[lang].hero.shloka1_caption}</p>
-              <cite style={{ fontWeight: 'normal', fontStyle: 'normal', fontSize: '1.1rem', opacity: 0.9 }}>
-                {t[lang].hero.meaning1}
-                <br />
-                </cite>
+              <cite style={{ fontWeight: 'normal', fontStyle: 'normal', fontSize: '1.1rem', opacity: 0.9 }}>{t[lang].hero.meaning1}</cite>
             </blockquote>
-
             <h2 className="hero-welcome" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '1.8rem' : '1.5rem', marginTop: '30px' }}>{t[lang].hero.welcome}</h2>
             <h3 className="hero-trust-name" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '3.2rem' : '2.8rem' }}>{t[lang].trustName}</h3>
             <p className="hero-subtitle" style={{ maxWidth: '900px', margin: '20px auto' }}>{t[lang].hero.desc1}</p>
@@ -257,7 +253,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" className="about">
         <div className="section-content">
           <div className="section-header">
@@ -294,12 +289,7 @@ export default function Home() {
             </div>
             <div className="about-image">
                <div className="temple-slider" style={{ position: 'relative', height: '500px', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                  <Image 
-                    src="/main_temple_1.jpeg" 
-                    alt="Sri Omkareswara Swamy" 
-                    fill 
-                    style={{ objectFit: 'cover' }} 
-                  />
+                  <Image src="/main_temple_1.jpeg" alt="Sri Omkareswara Swamy" fill style={{ objectFit: 'cover' }} unoptimized />
                   <p className="image-caption" style={{ position: 'absolute', bottom: '0', width: '100%', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '10px', textAlign: 'center' }}>
                     {lang === 'en' ? 'Sri Omkareswara Swamy Temple, Paarnapalli' : 'శ్రీ ఓంకారేశ్వర స్వామి ఆలయం, పార్నపల్లి'}
                   </p>
@@ -309,7 +299,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programs Section */}
       <section id="programs" className="programs">
         <div className="section-content">
           <div className="section-header">
@@ -328,7 +317,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Events Section */}
       <section id="events" className="events">
         <div className="section-content">
           <div className="section-header">
@@ -351,30 +339,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* YouTube Video Section - Corrected Responsive Implementation */}
+      {/* Video Section */}
       <section id="video" style={{ padding: '80px 0', background: '#fcfcfc' }}>
         <div className="section-content" style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-             <h2 style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '2.8rem' : '2.5rem', color: '#3d2b1f' }}>
-               {t[lang].video.title}
-             </h2>
+             <h2 style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '2.8rem' : '2.5rem', color: '#3d2b1f' }}>{t[lang].video.title}</h2>
           </div>
           <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 20px' }}>
              <div style={{ position: 'relative', overflow: 'hidden', width: '100%', paddingTop: '56.25%', borderRadius: '15px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', background: '#000' }}>
-                <iframe
-                   style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, width: '100%', height: '100%', border: 'none' }}
-                   src="https://www.youtube-nocookie.com/embed/Ui9B59BX2mU?rel=0&modestbranding=1"
-                   title={t[lang].video.title}
-                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                   allowFullScreen
-                   loading="lazy"
-                ></iframe>
+                <iframe style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, width: '100%', height: '100%', border: 'none' }} src="https://www.youtube-nocookie.com/embed/Ui9B59BX2mU?rel=0&modestbranding=1" title={t[lang].video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen loading="lazy"></iframe>
              </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="contact">
         <div className="section-content">
           <div className="section-header">
@@ -410,7 +388,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Donate Section */}
       <section id="donate" className="donate" style={{ background: '#fef5e7', paddingBottom: '100px' }}>
         <div className="section-content">
           <div className="section-header">
@@ -425,16 +402,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer Section */}
       <footer className="footer-v2" style={{ background: '#3d2b1f', color: '#f5f5f5', padding: '60px 20px 20px' }}>
         <div className="footer-content" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
-          
           <div className="footer-col">
             <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.aboutTitle}</h4>
             <p style={{ fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '20px', textAlign: 'justify' }}>{t[lang].footer.aboutDesc}</p>
             <p style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{t[lang].footer.regNo}</p>
           </div>
-
           <div className="footer-col">
             <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.quickLinksTitle}</h4>
             <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -447,84 +421,24 @@ export default function Home() {
               ))}
             </ul>
           </div>
-
           <div className="footer-col">
             <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.connectTitle}</h4>
             <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
               {[
-                { 
-                  label: 'FB', 
-                  url: 'https://www.facebook.com/profile.php?id=61580592437854',
-                  svg: <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                },
-                { 
-                  label: 'IG', 
-                  url: 'https://www.instagram.com/bvvb_trust',
-                  svg: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                },
-                { 
-                  label: 'X', 
-                  url: 'https://x.com/bvvbtrust',
-                  svg: <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
-                },
-                { 
-                  label: 'YT', 
-                  url: 'https://www.youtube.com/@BVVBTRUST',
-                  svg: <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                }
+                { label: 'FB', url: 'https://www.facebook.com/profile.php?id=61580592437854', svg: <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/> },
+                { label: 'IG', url: 'https://www.instagram.com/bvvb_trust', svg: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/> },
+                { label: 'X', url: 'https://x.com/bvvbtrust', svg: <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/> },
+                { label: 'YT', url: 'https://www.youtube.com/@BVVBTRUST', svg: <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/> }
               ].map((social) => (
-                <a 
-                  key={social.label} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  style={{ 
-                    width: '38px', 
-                    height: '38px', 
-                    borderRadius: '50%', 
-                    background: 'rgba(255,255,255,0.1)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    transition: 'all 0.3s ease',
-                    border: '1px solid rgba(255,255,255,0.1)'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = '#f1c40f';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    const svg = e.currentTarget.querySelector('svg');
-                    if (svg) svg.style.fill = '#2c1e14';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    const svg = e.currentTarget.querySelector('svg');
-                    if (svg) svg.style.fill = '#f5f5f5';
-                  }}
-                >
-                  <svg 
-                    viewBox="0 0 24 24" 
-                    width="20" 
-                    height="20" 
-                    style={{ fill: '#f5f5f5', transition: 'fill 0.3s' }}
-                  >
-                    {social.svg}
-                  </svg>
+                <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg viewBox="0 0 24 24" width="20" height="20" style={{ fill: '#f5f5f5' }}>{social.svg}</svg>
                 </a>
               ))}
             </div>
           </div>
         </div>
-
-        <div className="footer-bottom" style={{ maxWidth: '1200px', margin: '40px auto 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '0.85rem' }}>
-          <p style={{ marginBottom: '10px', color: '#bdc3c7' }}>
-            {t[lang].footer.copyright} | 
-            <button style={{ background: 'none', border: 'none', color: 'orange', cursor: 'pointer', marginLeft: '10px' }}>{t[lang].footer.privacy}</button> | 
-            <button style={{ background: 'none', border: 'none', color: 'orange', cursor: 'pointer', marginLeft: '10px' }}>{t[lang].footer.terms}</button>
-          </p>
+        <div style={{ maxWidth: '1200px', margin: '40px auto 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '0.85rem', color: '#bdc3c7' }}>
+          <p>© 2026 Brahmasri Valiveru VenkataRama Bhotlu Trust. {lang === 'en' ? 'All rights reserved.' : 'సర్వ హక్కులు ప్రత్యేకించబడినవి.'}</p>
         </div>
       </footer>
     </main>
