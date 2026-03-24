@@ -305,38 +305,106 @@ export default function History() {
         </div>
       </div>
 
-      {/* Comprehensive Footer Addition */}
-      <footer style={{ background: '#3d2b1f', color: '#f5f5f5', padding: '60px 20px 20px', marginTop: '80px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
+      {/* Footer Section */}
+      <footer className="footer-v2" style={{ background: '#3d2b1f', color: '#f5f5f5', padding: '60px 20px 20px' }}>
+        <div className="footer-content" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
+          
           <div className="footer-col">
-            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{lang === 'en' ? 'About Seva Trust' : 'సేవా ట్రస్ట్ గురించి'}</h4>
-            <p style={{ fontSize: '0.9rem', lineHeight: '1.6', textAlign: 'justify' }}>
-              {lang === 'en' 
-                ? 'Dedicated to the sacred service of Sri Omkareswara Swamy Temple, Paarnapalli. The Trust preserves temple traditions, promotes Sanatana Dharma, and serves devotees and seekers.' 
-                : 'పార్నపల్లిలోని శ్రీ ఓంకారేశ్వర స్వామి ఆలయ అభివృద్ధికి మరియు పవిత్ర సేవకు అంకితం చేయబడింది. సనాతన ధర్మ ప్రచారానికి మరియు ముముక్షువుల శ్రేయస్సుకు ఈ సంస్థ కృషి చేస్తుంది.'}
-            </p>
-            <p style={{ fontSize: '0.9rem', fontWeight: 'bold', marginTop: '15px' }}>Reg. No.: 13/2026</p>
+            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.aboutTitle}</h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '20px', textAlign: 'justify' }}>{t[lang].footer.aboutDesc}</p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{t[lang].footer.regNo}</p>
           </div>
+
           <div className="footer-col">
-            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{lang === 'en' ? 'Quick Links' : 'త్వరిత లింకులు'}</h4>
-            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem' }}>
-              {['Invocation', 'Roots', 'Vision'].map((link, idx) => (
-                <li key={idx} style={{marginBottom: '8px'}}><button onClick={() => scrollTo(link.toLowerCase())} style={{background: 'none', border: 'none', color: '#f5f5f5', cursor: 'pointer'}}>{link}</button></li>
+            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.quickLinksTitle}</h4>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {['about', 'programs', 'donate', 'events'].map((link) => (
+                <li key={link} style={{ marginBottom: '10px' }}>
+                  <button onClick={() => scrollToSection(link)} style={{ background: 'none', border: 'none', color: '#f5f5f5', cursor: 'pointer', fontSize: '0.9rem', textDecoration: 'none' }}>
+                    {(t[lang].nav as any)[link]}
+                  </button>
+                </li>
               ))}
             </ul>
           </div>
+
           <div className="footer-col">
-            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{lang === 'en' ? 'Connect With Us' : 'మమ్మల్ని అనుసరించండి'}</h4>
-            <div style={{ display: 'flex', gap: '15px' }}>
-               {['FB', 'IG', 'X', 'YT', 'IN'].map(icon => (
-                 <div key={icon} style={{ width: '35px', height: '35px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' }}>{icon}</div>
-               ))}
+            <h4 style={{ ...currentHeaderFont, color: 'white', marginBottom: '20px' }}>{t[lang].footer.connectTitle}</h4>
+            <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
+              {[
+                { 
+                  label: 'FB', 
+                  url: 'https://www.facebook.com/profile.php?id=61580592437854',
+                  svg: <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                },
+                { 
+                  label: 'IG', 
+                  url: 'https://www.instagram.com/bvvb_trust',
+                  svg: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                },
+                { 
+                  label: 'X', 
+                  url: 'https://x.com/bvvbtrust',
+                  svg: <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
+                },
+                { 
+                  label: 'YT', 
+                  url: 'https://www.youtube.com/@BVVBTRUST',
+                  svg: <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                }
+              ].map((social) => (
+                <a 
+                  key={social.label} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  style={{ 
+                    width: '38px', 
+                    height: '38px', 
+                    borderRadius: '50%', 
+                    background: 'rgba(255,255,255,0.1)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(255,255,255,0.1)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = '#f1c40f';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    const svg = e.currentTarget.querySelector('svg');
+                    if (svg) svg.style.fill = '#2c1e14';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    const svg = e.currentTarget.querySelector('svg');
+                    if (svg) svg.style.fill = '#f5f5f5';
+                  }}
+                >
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    width="20" 
+                    height="20" 
+                    style={{ fill: '#f5f5f5', transition: 'fill 0.3s' }}
+                  >
+                    {social.svg}
+                  </svg>
+                </a>
+              ))}
             </div>
           </div>
         </div>
-        <div style={{ maxWidth: '1200px', margin: '40px auto 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '0.85rem', color: '#bdc3c7' }}>
-          <p>© 2026 Brahmashri Valiveru VenkataRama Bhotulu Trust. {lang === 'en' ? 'All rights reserved.' : 'సర్వ హక్కులు ప్రత్యేకించబడినవి.'}</p>
-          <p style={{marginTop: '10px'}}><span style={{color: 'orange', cursor: 'pointer'}}>Privacy Policy</span> | <span style={{color: 'orange', cursor: 'pointer'}}>Terms of Service</span></p>
+
+        <div className="footer-bottom" style={{ maxWidth: '1200px', margin: '40px auto 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '0.85rem' }}>
+          <p style={{ marginBottom: '10px', color: '#bdc3c7' }}>
+            {t[lang].footer.copyright} | 
+            <button style={{ background: 'none', border: 'none', color: 'orange', cursor: 'pointer', marginLeft: '10px' }}>{t[lang].footer.privacy}</button> | 
+            <button style={{ background: 'none', border: 'none', color: 'orange', cursor: 'pointer', marginLeft: '10px' }}>{t[lang].footer.terms}</button>
+          </p>
         </div>
       </footer>
     </main>
