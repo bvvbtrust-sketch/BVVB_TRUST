@@ -202,7 +202,7 @@ export default function Home() {
         <div className="nav-content">
           <div className="logo">
             <Image 
-              src="/06 - LOGO - IMG.jpg" 
+              src="/LOGO_HQ.png" 
               alt="Logo" 
               width={120} 
               height={120} 
