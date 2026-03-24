@@ -183,7 +183,7 @@ export default function History() {
           {/* Family Tree Image */}
           <div style={{ maxWidth: '900px', margin: '30px auto', textAlign: 'center', padding: '0 20px' }}>
             <Image 
-              src="/family_tree.jpeg" 
+              src="/family_tree_handwritten.jpeg" 
               alt="Valiveru Family Tree" 
               width={900} 
               height={600} 
