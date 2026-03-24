@@ -149,7 +149,25 @@ export default function History() {
               </div>
             )}
           </section>
-
+{/* Family Tree Image Insertion */}
+<div style={{ maxWidth: '900px', margin: '30px auto', textAlign: 'center', padding: '0 20px' }}>
+  <Image 
+    src="/images/family_tree_handwritten.jpeg" // Replace with your actual filename
+    alt="Valiveru Family Tree" 
+    width={900} 
+    height={600} 
+    style={{ 
+      borderRadius: '15px', 
+      boxShadow: '0 10px 30px rgba(0,0,0,0.1)', 
+      width: '100%', 
+      height: 'auto',
+      border: '1px solid #e0d8c8'
+    }} 
+  />
+  <p style={{ marginTop: '15px', fontSize: '1rem', color: '#555', fontStyle: 'italic' }}>
+    {lang === 'en' ? 'The Ancestral Lineage (Vaṃśavṛkṣa) of the Valiveru Family' : 'వలివేరు వంశవృక్షం'}
+  </p>
+</div>
      {/* Chapter II - Acharana */}
 
           <section id="acharana" className="history-chapter">
