@@ -67,7 +67,7 @@ export default function Home() {
         e4: { name: "Karthika Masam", date: "NOV", desc: "Month-long sacred observances including daily Deepotsavam and Abhishekams throughout the holy month." }
       },
       video: {
-        title: "AARADHANA 2025"
+        title: "AARADHANA 2025 HIGHLIGHTS"
       },
       contact: {
         tag: "Get in Touch",
@@ -141,7 +141,7 @@ export default function Home() {
         e4: { name: "కార్తీక మాస వేడుకలు", date: "నవంబర్", desc: "దీపోత్సవం మరియు ప్రత్యేక అభిషేకములతో నెలంతా పండుగ వాతావరణం." }
       },
       video: {
-        title: "ఆరాధన 2025"
+        title: "ఆరాధన 2025 విశేషాలు"
       },
       contact: {
         tag: "సంప్రదించండి",
@@ -351,25 +351,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* YouTube Video Section - Added Here */}
-      <section id="video" className="video-section" style={{ padding: '60px 0', background: '#fcfcfc' }}>
-        <div className="section-content">
-          <div className="section-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 className="section-title" style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '2.8rem' : '2.5rem' }}>
-              {t[lang].video.title}
-            </h2>
+      {/* YouTube Video Section - Corrected Responsive Implementation */}
+      <section id="video" style={{ padding: '80px 0', background: '#fcfcfc' }}>
+        <div className="section-content" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+             <h2 style={{ ...currentHeaderFont, fontSize: lang === 'te' ? '2.8rem' : '2.5rem', color: '#3d2b1f' }}>
+               {t[lang].video.title}
+             </h2>
           </div>
-          <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px' }}>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '15px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-              <iframe
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                src="https://www.youtube.com/embed/Ui9B59BX2mU"
-                title={t[lang].video.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
+          <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 20px' }}>
+             <div style={{ position: 'relative', overflow: 'hidden', width: '100%', paddingTop: '56.25%', borderRadius: '15px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', background: '#000' }}>
+                <iframe
+                   style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, width: '100%', height: '100%', border: 'none' }}
+                   src="https://www.youtube-nocookie.com/embed/Ui9B59BX2mU?rel=0&modestbranding=1"
+                   title={t[lang].video.title}
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowFullScreen
+                   loading="lazy"
+                ></iframe>
+             </div>
           </div>
         </div>
       </section>
